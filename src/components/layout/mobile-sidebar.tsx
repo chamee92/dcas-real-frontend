@@ -37,8 +37,8 @@ export function MobileSidebar() {
             <div className="ml-2">
                 <NextImage
                     src="/logo.png"
-                    alt="TravelAdmin Logo"
-                    width={140}
+                    alt="DCAS Logo"
+                    width={120}
                     height={40}
                     className="h-8 w-auto object-contain"
                     priority
@@ -59,8 +59,8 @@ export function MobileSidebar() {
                             <div className="flex items-center gap-2">
                                 <NextImage
                                     src="/logo.png"
-                                    alt="TravelAdmin Logo"
-                                    width={150}
+                                    alt="DCAS Logo"
+                                    width={120}
                                     height={40}
                                     className="h-8 w-auto object-contain"
                                     priority

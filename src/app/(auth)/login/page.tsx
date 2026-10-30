@@ -95,7 +95,7 @@ export default function LoginPage() {
                             <div className="relative w-44 h-14 mb-2">
                                 <Image
                                     src="/logo.png"
-                                    alt="Welcome Ceylon"
+                                    alt="DCAS Logo"
                                     fill
                                     className="object-contain"
                                     priority

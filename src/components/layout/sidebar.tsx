@@ -65,9 +65,9 @@ export function Sidebar() {
             <div className="flex items-center gap-2 px-2 py-4">
                 <NextImage
                     src="/logo.png"
-                    alt="TravelAdmin Logo"
+                    alt="DCAS Logo"
                     width={180}
-                    height={50}
+                    height={60}
                     className="h-10 w-auto object-contain"
                     priority
                 />

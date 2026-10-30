@@ -114,7 +114,7 @@ export function InvoicePreviewDialog({ open, onOpenChange, data }: InvoicePrevie
                                 <div className="flex items-center justify-end gap-2 mb-4">
                                     <img
                                         src="/logo.png"
-                                        alt="TravelAdmin Logo"
+                                        alt="DCAS Logo"
                                         style={{ width: '180px', height: 'auto', objectFit: 'contain' }}
                                     />
                                 </div>
