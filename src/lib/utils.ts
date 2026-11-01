@@ -135,12 +135,12 @@ export function formatPhoneNumberForApi(phone: string): string {
 }
 
 /**
- * Formats phone numbers for display.
- * If a phone number was saved with international +94 prefix, converts it back to local 0xxxxxxxxx format.
+ * Formats phone numbers for display in read-only views (tables, cards, detail panels).
+ * Converts international +94 prefix back to local 0xxxxxxxxx format for readability.
  * Examples:
- * - +94767897864 -> 0767897864
- * - 94767897864 -> 0767897864
- * - 0768768786 -> 0768768786
+ * - +94767897864  -> 0767897864
+ * - 94767897864   -> 0767897864
+ * - 0768768786    -> 0768768786
  * - +447911123456 -> +447911123456
  */
 export function formatPhoneNumberForDisplay(phone?: string | null): string {
@@ -159,3 +159,37 @@ export function formatPhoneNumberForDisplay(phone?: string | null): string {
   return clean;
 }
 
+/**
+ * Formats a stored phone number for use inside edit form inputs.
+ * Preserves the full international format (with country code) so users see and
+ * can edit the complete number. Local Sri Lankan "0XXXXXXXXX" numbers are
+ * promoted to "+94XXXXXXXXX" so the field always shows the country code.
+ *
+ * Examples:
+ * - +94771234567  -> +94771234567   (already international, kept as-is)
+ * - 94771234567   -> +94771234567   (missing +, added)
+ * - 0771234567    -> +94771234567   (local SL -> international)
+ * - +447911123456 -> +447911123456  (non-SL international, kept as-is)
+ * - ""            -> ""             (empty stays empty)
+ */
+export function formatPhoneNumberForEdit(phone?: string | null): string {
+  if (!phone) return "";
+  const clean = phone.trim().replace(/[\s\-\(\)]/g, "");
+  if (!clean) return "";
+
+  // Already has leading +, return as-is
+  if (clean.startsWith("+")) return clean;
+
+  // 94XXXXXXXXX (11 digits, no +) -> +94XXXXXXXXX
+  if (clean.startsWith("94") && clean.length === 11) {
+    return "+" + clean;
+  }
+
+  // 0XXXXXXXXX (SL local, 10 digits) -> +94XXXXXXXXX
+  if (clean.startsWith("0") && clean.length === 10) {
+    return "+94" + clean.substring(1);
+  }
+
+  // Anything else (unknown / other international without +): return cleaned
+  return clean;
+}
