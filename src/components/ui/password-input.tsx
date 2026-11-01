@@ -14,7 +14,7 @@ const PasswordInput = React.forwardRef<
     const [showPassword, setShowPassword] = React.useState(false)
 
     return (
-        <div className="relative">
+        <div className="relative w-full">
             <Input
                 type={showPassword ? "text" : "password"}
                 className={cn("pr-10", className)}
@@ -25,13 +25,16 @@ const PasswordInput = React.forwardRef<
                 type="button"
                 variant="ghost"
                 size="sm"
-                className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+                className="absolute right-0 top-0 h-full px-3 py-2 text-muted-foreground hover:text-foreground hover:bg-transparent cursor-pointer focus-visible:ring-0 focus-visible:outline-none"
                 onClick={() => setShowPassword((prev) => !prev)}
+                disabled={props.disabled}
+                aria-label={showPassword ? "Hide password" : "Show password"}
+                title={showPassword ? "Hide password" : "Show password"}
             >
                 {showPassword ? (
-                    <EyeOff className="h-4 w-4 text-muted-foreground" />
+                    <EyeOff className="h-4 w-4" aria-hidden="true" />
                 ) : (
-                    <Eye className="h-4 w-4 text-muted-foreground" />
+                    <Eye className="h-4 w-4" aria-hidden="true" />
                 )}
                 <span className="sr-only">
                     {showPassword ? "Hide password" : "Show password"}
